@@ -1,0 +1,38 @@
+$(document).ready(function() {
+	$("#createUser").click(function (){
+		 var fname = $('#fname').val(),
+         lname = $('#lname').val(),
+         color = $('#eye').val(),
+         age = $('#agr').val();
+
+     var a= {
+         "firstName": species,
+         "lastName": numberOfLegs,
+         "eyeColor": color,
+         "age": age
+     	}
+     
+     $$.post("http://localhost:8081/rst/api/users",
+    		    a,
+     function(data, status){
+         alert("Error with create"));
+     });
+
+		});
+	});
+	$("#button").click(function (){
+		$.get({
+			url: "http://localhost:8081/rst/api/users",
+			dataType: "json",
+			success: function(data){
+				console.log(data);
+				$.each(data, function(index){
+					var tr = $('<tr>');
+					tr.append("<td> " + data[index].name + "</td>");
+					$("#usersTable").append(tr);
+				});
+			}
+
+		});
+	});
+});

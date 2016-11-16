@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="scripts.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	   First name: <input type="text" name="fname"><br>
+	<script>
+		document.write(Date());
+	</script>
+	<button id="button">Get Users</button>
+	<table id="usersTable"></table>
+</body>
+</html>

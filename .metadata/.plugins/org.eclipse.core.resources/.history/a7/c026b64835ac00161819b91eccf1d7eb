@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="scripts.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	   First name: <input id ="fname" type="text" name="fname"><br>
+	   Last name: <input id = "lname" type="text" name="lname"><br>
+	   Age: <input id = "age" type="text" name="age"><br>
+	   Eye color: <input id = "eye" type="text" name="eye"><br>
+	  
+	<script> 
+		document.write(Date());
+	</script>
+	<button id="button">Get Users</button>
+	<table id="usersTable"></table>
+</body>
+</html>
