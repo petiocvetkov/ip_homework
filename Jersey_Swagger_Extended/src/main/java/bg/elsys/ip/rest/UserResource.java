@@ -12,25 +12,25 @@ import javax.ws.rs.core.Response.Status;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Path("/users")
+@Path("/cars")
 @Api("users")
 public class UserResource {
 
 	@GET
-	@ApiOperation(value = "get list of users", response = User.class, responseContainer = "List")
+	@ApiOperation(value = "get list of cars", response = Car.class, responseContainer = "List")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsers() {
-		UserService userService = UserService.getInstance();
+		CarService userService = CarService.getInstance();
 		return Response.ok(userService.getUsers()).build();
 	}
 
 	@POST
-	@ApiOperation(value = "create new user", response = User.class)
+	@ApiOperation(value = "create new car", response = Car.class)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createUser(User user) {
-		UserService.getInstance().addUser(user);
+	public Response createUser(Car car) {
+		CarService.getInstance().addUser(car);
 
-		return Response.ok(user).status(Status.CREATED).build();
+		return Response.ok(car).status(Status.CREATED).build();
 	}
 }
