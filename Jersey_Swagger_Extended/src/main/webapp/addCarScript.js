@@ -18,7 +18,7 @@ $(document).ready(function() {
   			data: JSON.stringify(JSONObj),
   			success: function(data){
   				console.log(data);
-  			  alert("asd");
+  			  //alert("asd");
   			}
   		});
   });

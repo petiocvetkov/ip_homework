@@ -26,11 +26,11 @@ public class CarService {
 
 	}
 
-	public List<Car> getUsers() {
+	public List<Car> getCars() {
 		return Collections.unmodifiableList(carList);
 	}
 
-	public void addUser(Car car) {
+	public void addCar(Car car) {
 		carList.add(car);
 	}
 }
