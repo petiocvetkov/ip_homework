@@ -4,12 +4,35 @@ $(document).ready(function() {
 	var markFilter = '',
 			modelFilter ='',
 			yearFilter ='',
-			hpFilter ='';
+			hpFilter ='',
+			marks = [];
+
 	var url = "http://localhost:8081/rst/api/cars";
+
+	$.get({
+		url: "http://localhost:8081/rst/api/cars/marks",
+		success: function(data){
+			console.log(data);
+			for (var i = 0; i < data.length; i++) {
+				marks.push(data[i]);
+			}
+			}
+
+
+	});
+	$('#markFilter').autocomplete({
+                 source:marks,
+                 select: function (event, ui) {
+									 	console.log(marks);
+                 }
+             });
+
+
 
 
 
 	$("#button").click(function (){
+
 
 
 		console.log("asd");
@@ -63,54 +86,53 @@ var firstPage = function (data) {
 }
 
 
+var update = function () {
+	$.get({
+		url: url,
+		dataType: "json",
+		data:{"page": page,
+				"markFilter": markFilter},
+		success: function(data){
+			console.log(data);
+			if (data.length > 0) {
+				page++;
+				$.each(data, function(index){
+					var tr = $('<tr>');
+				tr.append("<td> " + data[index].mark + "</td>");
+				tr.append("<td> " + data[index].model + "</td>");
+				tr.append("<td> " + data[index].year + "</td>");
+				tr.append("<td> " + data[index].horsePower + "</td>")
+				$("#carsTable").append(tr);
+				});
+			}else {
+				$("#nextBt").hide();
+			}
+		}
+})
+
+}
+
+
 	$("#markFilter").on('input', function () {
 			markFilter = $("#markFilter").val();
-			console.log(markFilter);
 			firstPage();
 	})
 
 	$("#modelFilter").on('input', function () {
 			modelFilter = $("#modelFilter").val();
-			console.log(markFilter);
 			firstPage();
 	})
 
 	$("#yearFilter").on('input', function () {
 			yearFilter = $("#yearFilter").val();
-			console.log(markFilter);
 			firstPage();
 	})
 
 	$("#hpFilter").on('input', function () {
 			hpFilter = $("#hpFilter").val();
-			console.log(markFilter);
 			firstPage();
 	})
 
-	var update = function () {
-		$.get({
-			url: url,
-			dataType: "json",
-			data:{"page": page,
-					"markFilter": markFilter},
-			success: function(data){
-				console.log(data);
-				if (data.length > 0) {
-					page++;
-					$.each(data, function(index){
-						var tr = $('<tr>');
- 				 	tr.append("<td> " + data[index].mark + "</td>");
- 				 	tr.append("<td> " + data[index].model + "</td>");
- 				 	tr.append("<td> " + data[index].year + "</td>");
- 				 	tr.append("<td> " + data[index].horsePower + "</td>")
- 				 	$("#carsTable").append(tr);
-					});
-				}else {
-					$("#nextBt").hide();
-				}
-			}
-	})
 
-	}
 
 });

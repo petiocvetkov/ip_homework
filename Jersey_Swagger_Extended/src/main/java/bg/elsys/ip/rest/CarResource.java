@@ -28,6 +28,8 @@ public class CarResource {
 			@QueryParam("modelFilter") String modelFilter,
 			@QueryParam("yearFilter") String yearFilter,
 			@QueryParam("hpFilter") String hpFilter) {
+		
+		
 		CarService carService = CarService.getInstance();
 		
 		return Response.ok(carService.getCars().stream().skip((page - 1) * 10)
@@ -69,6 +71,21 @@ public class CarResource {
 		CarService.getInstance().addCar(car);
 
 		return Response.ok(car).status(Status.CREATED).build();
+	}
+	
+	
+	
+	@GET
+	@Path("marks")
+	@ApiOperation(value = "Get all marks", response = String.class, responseContainer = "List")
+	public Response getAllSpecies() {
+		CarService carService = CarService.getInstance();
+
+		return Response.ok(carService.getCars()
+				.stream()
+				.map(car -> car.getMark())
+				.distinct()
+				.collect(Collectors.toList())).build();
 	}
 	
 	
