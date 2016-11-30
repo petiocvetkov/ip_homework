@@ -14,12 +14,12 @@ public class Car {
 	
 	private String year;
 	
-	private int HorsePower;
+	private String HorsePower;
 
 	public Car() {
 	}
 
-	public Car(String mark, String model, String Year, int HorsePower) {
+	public Car(String mark, String model, String Year, String HorsePower) {
 		super();
 		this.mark = mark;
 		this.model = model;
@@ -53,11 +53,11 @@ public class Car {
 		this.year = year;
 	}
 
-	public int getHorsePower() {
+	public String getHorsePower() {
 		return HorsePower;
 	}
 
-	public void setHorsePower(int horsePower) {
+	public void setHorsePower(String horsePower) {
 		HorsePower = horsePower;
 	}
 

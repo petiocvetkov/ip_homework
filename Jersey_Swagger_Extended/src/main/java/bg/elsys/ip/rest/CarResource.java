@@ -1,5 +1,6 @@
 package bg.elsys.ip.rest;
 
+import java.awt.List;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -22,12 +23,40 @@ public class CarResource {
 	@GET
 	@ApiOperation(value = "get list of cars", response = Car.class, responseContainer = "List")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUsers(@QueryParam("page") int page) {
+	public Response getUsers(@QueryParam("page") int page,
+			@QueryParam("markFilter") String markFilter,
+			@QueryParam("modelFilter") String modelFilter,
+			@QueryParam("yearFilter") String yearFilter,
+			@QueryParam("hpFilter") String hpFilter) {
 		CarService carService = CarService.getInstance();
-		//Object obj = userService.getCars().stream().skip((page - 1) * 10)
-		//		.limit(10)
-		//		.collect(Collectors.toList());
+		
 		return Response.ok(carService.getCars().stream().skip((page - 1) * 10)
+						.filter((car) -> {
+							if (markFilter != null) {
+								return (car.getMark().toLowerCase().contains(markFilter.toLowerCase()));
+							}
+						
+							return true;})
+						
+						.filter((car) -> {
+							if (markFilter != null) {
+								return (car.getModel().toLowerCase().contains(modelFilter.toLowerCase()));
+							}
+						
+							return true;})
+						.filter((car) -> {
+							if (markFilter != null) {
+								return (car.getYear().toLowerCase().contains(yearFilter.toLowerCase()));
+							}
+						
+							return true;})
+							.filter((car) -> {
+								if (hpFilter != null) {
+									return (car.getHorsePower().toLowerCase().contains(hpFilter.toLowerCase()));
+								}
+							
+								return true;})
+							
 						.limit(10)
 						.collect(Collectors.toList())).build();
 	}
@@ -41,4 +70,8 @@ public class CarResource {
 
 		return Response.ok(car).status(Status.CREATED).build();
 	}
+	
+	
+	
+
 }
